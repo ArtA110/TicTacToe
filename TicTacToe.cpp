@@ -47,8 +47,8 @@ class TicTacToe
                      board[i][j]='x';
                   else{
                      board[i][j]='o';
-                     return true;
                   }
+                   return true;
                }
                else if(position==0 && board[i][j]!='_')
                {
