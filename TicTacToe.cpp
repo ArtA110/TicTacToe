@@ -1,5 +1,5 @@
 #include<iostream>
-#include<unistd.h>
+#include<unistd.h>//for using sleep function in Unix-Based OS(in windows use windows.h)
 using namespace std;
 
 class TicTacToe
@@ -12,7 +12,7 @@ class TicTacToe
     bool turn;
 
     public:
-      TicTacToe()
+      TicTacToe()//creates empty board
       {
          for (int i = 0; i < 4; ++i)
          {
@@ -25,7 +25,7 @@ class TicTacToe
 
       ~TicTacToe(){}
 
-      bool inputer(int position, const bool& userTurn)
+      bool inputer(int position, const bool& userTurn)//insert X or O in a position of the board
       {
          if(position>16 || position<1)
          {
@@ -59,7 +59,7 @@ class TicTacToe
          return false;
       }
 
-      int checker()
+      int checker()//Check for winner!
       {
          int Xrow=0,Xcol=0,Xhex=0,Xlhex=0,Orow=0,Ocol=0,Ohex=0,Olhex=0;
 
@@ -72,7 +72,7 @@ class TicTacToe
                   ++Xrow;
 
                   if(Xrow==4)
-                     return 0;
+                     return 0;//X WINS
                }
 
                if(board[j][i]=='x')
@@ -88,7 +88,7 @@ class TicTacToe
                   ++Orow;
 
                   if(Orow==4)
-                     return 1;
+                     return 1;//O WINS
                }
 
                if(board[j][i]=='o')
@@ -110,7 +110,7 @@ class TicTacToe
                ++Xhex;
 
                if(Xhex==4)
-                  return 0;
+                  return 0;//nobody wins YET
             }
 
             if(board[i][i]=='o')
@@ -141,7 +141,7 @@ class TicTacToe
          return -1;
       }
 
-      bool full()
+      bool full()//is the board full?
       {
          for (int i = 0; i < 4; ++i)
          {
@@ -154,13 +154,13 @@ class TicTacToe
          return true;
       }
 
-      void names(const string& name1, const string& name2)
+      void names(const string& name1, const string& name2)//usernames setter
       {
-         this->user1 = name1;
-         this->user2 = name2;
+         user1 = name1;
+         user2 = name2;
       }
 
-      void print()
+      void print()//print table
       {
          cout << endl;
 
@@ -172,11 +172,9 @@ class TicTacToe
             {
                cout<<board[i][j];
 
-               cout.flush();
+               cout.flush();//required to flush buffer
 
                usleep(1*microsec);
-
-               //cout.flush();
 
                cout<<" ";
             }
@@ -213,7 +211,7 @@ int main()
          break;
       }
 
-      while(!isValid)
+      while(!isValid)//while will break if a valid position enter by user
       {
          cout<<"X: ";
          
@@ -224,7 +222,7 @@ int main()
 
       isValid=false;
 
-      winner=t1.checker();
+      winner=t1.checker();//check if X wins
 
       t1.print();
 
@@ -246,7 +244,7 @@ int main()
 
       isValid=false;
 
-      winner=t1.checker();
+      winner=t1.checker();//check if O wins
 
        t1.print();
 
